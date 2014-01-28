@@ -9,8 +9,15 @@ A javascript fullscreen mod for goontu.be.  This allows users to chat while view
 First, you need to be on the website goontu.be
 
 You'll be pasting this code into your browser's console.
+
 To open the console press F12 (works on most browsers)
-Now, open the file in this project labeled "goontubeFullscreen.js", highlight all the code and copy it.
+
+Now, open the file in this project labeled "goontubeFullscreen.js",
+click the "raw" button in the top right corner 
+(or use the following link to get to the same page)
+https://raw.github.com/ariaBennett/goontube_fullscreen/master/goontubeFullscreen.js
+
+highlight all the code and copy it.
 ctrl-a selects everything
 ctrl-c copies the selection
 
