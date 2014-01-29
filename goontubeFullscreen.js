@@ -44,6 +44,9 @@ function adjustStyles() {
   chatList.style.width = "93%";
   chatList.style.height = "90%";
   chatList.style.backgroundColor = "#E6E6E6";
+
+  var chatInput = document.getElementById("cin");
+  chatInput.style.width = "95%";
 }
 
 function moveElements() {
