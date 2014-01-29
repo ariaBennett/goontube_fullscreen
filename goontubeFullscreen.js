@@ -80,4 +80,3 @@ moveElements();
 adjustStyles();
 resizeVideo();
 autoResize();
-video = getVideo();
