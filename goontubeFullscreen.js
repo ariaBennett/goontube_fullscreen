@@ -55,6 +55,12 @@ function getControls(getChildrenOption) {
   }
 }
 
+function getSlider() {
+  // This returns the transparency slider element.
+  var slider = document.getElementById("sliderTransparency");
+  return slider;
+}
+
 function adjustStyles() {
   // This function makes property adjustments to elements that already
   // exist on goontu.be.
@@ -148,6 +154,37 @@ function removeExtraElements() {
   document.getElementById("chat_users").remove();
 }
 
+function updateTransparency(value){
+  // This updates the opacity values of ui elements
+  // It's intended to be attached as an event on the transparency slider.
+  value = value * 0.01;
+  var chatClass = getChatClass();
+  chatClass.style.opacity = value;
+  var cams = document.getElementsByClassName("cameras")[0];
+  cams.style.opacity = value;
+}
+
+function createTransparencySlider(){
+  // This creates a slider that controls the transparency of
+  // UI elements.
+  // Currently this is only supported on chrome.
+  if (navigator.vendor === "Google Inc.") {
+    var slider = document.createElement("input");
+    slider.type = "range";
+    slider.id = "sliderTransparency"
+    slider.min = 0;
+    slider.max = 100;
+    slider.value = 100;
+
+    slider.onchange = function(){ 
+      updateTransparency(slider.value);
+    };
+
+    var controls = getControls();
+    controls.appendChild(slider);
+  }
+}
+
 
 // Run Section.
 removeExtraElements();
@@ -155,3 +192,4 @@ moveElements();
 adjustStyles();
 resizeVideo();
 autoResize();
+createTransparencySlider();
