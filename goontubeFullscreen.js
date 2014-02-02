@@ -59,7 +59,7 @@ function adjustStyles() {
   // This function makes property adjustments to elements that already
   // exist on goontu.be.
   var chat = getChatClass();
-  window.scrollTo(0);
+  window.scrollTo(0, 0);
   document.body.setAttribute("style",
     "overflow : hidden;"
   );
