@@ -185,6 +185,17 @@ function createTransparencySlider(){
   }
 }
 
+function attachVideoTypeChangeDetection() {
+  window.currentPlayer = getVideo().id;
+  window.setInterval(function(){
+    if (getVideo().currentPlayer !== window.currentPlayer) {
+      document.body.insertBefore(getVideo(), document.body.firstChild);
+      resizeVideo();
+      window.currentPlayer = getVideo().id;
+    }
+  },1000);
+}
+
 
 // Run Section.
 removeExtraElements();
@@ -193,3 +204,4 @@ adjustStyles();
 resizeVideo();
 autoResize();
 createTransparencySlider();
+attachVideoTypeChangeDetection();
