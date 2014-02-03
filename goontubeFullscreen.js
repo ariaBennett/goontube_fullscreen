@@ -6,8 +6,8 @@ function getVideo() {
   if (document.getElementById("gtubeVimeoPlayerID")) {
     video = document.getElementById("gtubeVimeoPlayerID");
   }
-  else if (document.getElementById("gtubeDailyMotionPlayerID")) {
-    video = document.getElementById("gtubeVimeoPlayerID");
+  else if (document.getElementById("mydmplayer")) {
+    video = document.getElementById("mydmplayer");
   }
   else if (document.getElementById("myytplayer")) {
     video = document.getElementById("myytplayer");
@@ -186,6 +186,10 @@ function createTransparencySlider(){
 }
 
 function attachVideoTypeChangeDetection() {
+  // This runs a function every second that
+  // detects if the media type of the video
+  // player has changed, and if it has,
+  // it inserts the new video player.
   window.currentPlayer = getVideo().id;
   window.setInterval(function(){
     if (getVideo().currentPlayer !== window.currentPlayer) {
