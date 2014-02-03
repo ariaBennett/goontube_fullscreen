@@ -8,6 +8,8 @@ A javascript fullscreen mod for goontu.be.  This allows users to chat while view
 
 First, you need to be on the website goontu.be
 
+You'll also want to refresh the page.
+
 You'll be pasting this code into your browser's console.
 
 To open the console press F12 (works on most browsers)
