@@ -192,7 +192,7 @@ function attachVideoTypeChangeDetection() {
   // it inserts the new video player.
   window.currentPlayer = getVideo().id;
   window.setInterval(function(){
-    if (getVideo().currentPlayer !== window.currentPlayer) {
+    if (getVideo().id !== window.currentPlayer) {
       document.body.insertBefore(getVideo(), document.body.firstChild);
       resizeVideo();
       window.currentPlayer = getVideo().id;
