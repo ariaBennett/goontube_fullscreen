@@ -1,7 +1,6 @@
 // Function Section.
 function getVideo() {
   // This returns the element of the current video player.
-  // TODO: verify daily motion's id, since it's a total guess.
   var video;
   if (document.getElementById("gtubeVimeoPlayerID")) {
     video = document.getElementById("gtubeVimeoPlayerID");
