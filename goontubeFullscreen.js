@@ -1,5 +1,11 @@
+// First we create a pseudo-namespace to store everything this
+// mod does inside. This lets us avoid cluttering the global name
+// space, and keeps everything in one place.
+// gtfo stands for "goontube fullscreen option"
+window.gtfo = {};
+
 // Function Section.
-function getVideo() {
+gtfo.getVideo = function getVideo() {
   // This returns the element of the current video player.
   var video;
   if (document.getElementById("gtubeVimeoPlayerID")) {
@@ -12,9 +18,9 @@ function getVideo() {
     video = document.getElementById("myytplayer");
   }
   return video;
-}
+};
 
-function getChatClass() {
+gtfo.getChatClass = function getChatClass() {
   // This returns the chat class element.
   // There are both a chat class and a chat id;
   // the chat class is the parent container of the chat id.
@@ -22,7 +28,7 @@ function getChatClass() {
   return chat[0];
 }
 
-function getChatId() {
+gtfo.getChatId = function getChatId() {
   // This returns the chat id element.
   // There are both a chat class and a chat id;
   // the chat id is the child of the chat class.
@@ -30,7 +36,7 @@ function getChatId() {
   return chat;
 }
 
-function getControls(getChildrenOption) {
+gtfo.getControls = function getControls(getChildrenOption) {
   // this function returns the controls element if no
   // parameters are passed. 
   // if getchildrenoption is given it operates the following ways:
@@ -54,16 +60,16 @@ function getControls(getChildrenOption) {
   }
 }
 
-function getSlider() {
+gtfo.getSlider = function getSlider() {
   // This returns the transparency slider element.
   var slider = document.getElementById("sliderTransparency");
   return slider;
 }
 
-function adjustStyles() {
+gtfo.adjustStyles = function adjustStyles() {
   // This function makes property adjustments to elements that already
   // exist on goontu.be.
-  var chat = getChatClass();
+  var chat = gtfo.getChatClass();
   window.scrollTo(0, 0);
   document.body.setAttribute("style",
     "overflow : hidden;"
@@ -74,7 +80,7 @@ function adjustStyles() {
   chat.style.width = "14%";
   chat.style.height = "90%";
 
-  var chatId = getChatId();
+  var chatId = gtfo.getChatId();
   chatId.style.width = "93%";
   chatId.style.height = "90%";
 
@@ -86,7 +92,7 @@ function adjustStyles() {
   var chatInput = document.getElementById("cin");
   chatInput.style.width = "100%";
 
-  var controls = getControls();
+  var controls = gtfo.getControls();
   controls.style.position = "relative";
   controls.style.textAlign = "center";
   controls.style.width = "100%";
@@ -99,7 +105,7 @@ function adjustStyles() {
   controlsLikeHate.style.right = "";
 
   // This shortens some of the text on the controls.
-  var controlText = getControls("text");
+  var controlText = gtfo.getControls("text");
   var controlTextCams = controlText[0];
   var controlTextAdd = controlText[1];
   var controlTextSkip = controlText[2];
@@ -112,14 +118,14 @@ function adjustStyles() {
   cams.style.position = "fixed";
 }
 
-function moveElements() {
+gtfo.moveElements = function moveElements() {
   // This moves around pre-existing elements, right now
   // the method is to move relevant elements to the top of
   // document.body.
-  var video = getVideo();
-  var chatClass = getChatClass();
-  var chatId = getChatId();
-  var controls = getControls();
+  var video = gtfo.getVideo();
+  var chatClass = gtfo.getChatClass();
+  var chatId = gtfo.getChatId();
+  var controls = gtfo.getControls();
   var addVid = document.getElementById("add");
   var cams = document.getElementsByClassName("cameras")[0];
   document.body.insertBefore(video, document.body.firstChild);
@@ -129,41 +135,41 @@ function moveElements() {
   chatClass.insertBefore(addVid, chatClass.firstChild);
 }
 
-function resizeVideo() {
+gtfo.resizeVideo = function resizeVideo() {
   // This resizes the video player to the size of 
   // window.inner*
-  var video = getVideo();
+  var video = gtfo.getVideo();
   video.width = window.innerWidth;
   video.height = window.innerHeight;
 }
 
-function autoResize() {
+gtfo.autoResize = function autoResize() {
   // This attaches an event listener which causes
   // resizeVideo() to be automatically called whenever
   // the size of the window is changed.
   window.onresize = function(){
-    resizeVideo();
+    gtfo.resizeVideo();
   };
 }
 
-function removeExtraElements() {
+gtfo.removeExtraElements = function removeExtraElements() {
   // This removes non-critical elements for layout purposes.
   document.getElementById("headerbar").remove();
   document.getElementById("banner").remove();
   document.getElementById("chat_users").remove();
 }
 
-function updateTransparency(value){
+gtfo.updateTransparency = function updateTransparency(value){
   // This updates the opacity values of ui elements
   // It's intended to be attached as an event on the transparency slider.
   value = value * 0.01;
-  var chatClass = getChatClass();
+  var chatClass = gtfo.getChatClass();
   chatClass.style.opacity = value;
   var cams = document.getElementsByClassName("cameras")[0];
   cams.style.opacity = value;
 }
 
-function createTransparencySlider(){
+gtfo.createTransparencySlider = function createTransparencySlider(){
   // This creates a slider that controls the transparency of
   // UI elements.
   // Currently this is only supported on chrome.
@@ -176,25 +182,25 @@ function createTransparencySlider(){
     slider.value = 100;
 
     slider.onchange = function(){ 
-      updateTransparency(slider.value);
+      gtfo.updateTransparency(slider.value);
     };
 
-    var controls = getControls();
+    var controls = gtfo.getControls();
     controls.appendChild(slider);
   }
 }
 
-function attachVideoTypeChangeDetection() {
+gtfo.attachVideoTypeChangeDetection = function attachVideoTypeChangeDetection() {
   // This runs a function every secondish that
   // detects if the media type of the video
   // player has changed, and if it has,
   // it inserts the new video player.
-  window.currentPlayer = getVideo().id;
+  window.currentPlayer = gtfo.getVideo().id;
   function checkVideoChange() {
-    if (getVideo().id !== window.currentPlayer) {
-      document.body.insertBefore(getVideo(), document.body.firstChild);
-      resizeVideo();
-      window.currentPlayer = getVideo().id;
+    if (gtfo.getVideo().id !== window.currentPlayer) {
+      document.body.insertBefore(gtfo.getVideo(), document.body.firstChild);
+      gtfo.resizeVideo();
+      window.currentPlayer = gtfo.getVideo().id;
     }
     setTimeout(checkVideoChange, 1000);
   }
@@ -203,10 +209,10 @@ function attachVideoTypeChangeDetection() {
 
 
 // Run Section.
-removeExtraElements();
-moveElements();
-adjustStyles();
-resizeVideo();
-autoResize();
-createTransparencySlider();
-attachVideoTypeChangeDetection();
+gtfo.removeExtraElements();
+gtfo.moveElements();
+gtfo.adjustStyles();
+gtfo.resizeVideo();
+gtfo.autoResize();
+gtfo.createTransparencySlider();
+gtfo.attachVideoTypeChangeDetection();
