@@ -185,18 +185,20 @@ function createTransparencySlider(){
 }
 
 function attachVideoTypeChangeDetection() {
-  // This runs a function every second that
+  // This runs a function every secondish that
   // detects if the media type of the video
   // player has changed, and if it has,
   // it inserts the new video player.
   window.currentPlayer = getVideo().id;
-  window.setInterval(function(){
+  function checkVideoChange() {
     if (getVideo().id !== window.currentPlayer) {
       document.body.insertBefore(getVideo(), document.body.firstChild);
       resizeVideo();
       window.currentPlayer = getVideo().id;
     }
-  },1000);
+    setTimeout(checkVideoChange, 1000);
+  }
+  checkVideoChange();
 }
 
 
