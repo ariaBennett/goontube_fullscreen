@@ -26,7 +26,7 @@ gtfo.getChatClass = function getChatClass() {
   // the chat class is the parent container of the chat id.
   var chat = document.getElementsByClassName("chat");
   return chat[0];
-}
+};
 
 gtfo.getChatId = function getChatId() {
   // This returns the chat id element.
@@ -34,7 +34,7 @@ gtfo.getChatId = function getChatId() {
   // the chat id is the child of the chat class.
   var chat = document.getElementById("chat");
   return chat;
-}
+};
 
 gtfo.getControls = function getControls(getChildrenOption) {
   // this function returns the controls element if no
@@ -58,13 +58,13 @@ gtfo.getControls = function getControls(getChildrenOption) {
   else {
     return controls;
   }
-}
+};
 
 gtfo.getSlider = function getSlider() {
   // This returns the transparency slider element.
   var slider = document.getElementById("sliderTransparency");
   return slider;
-}
+};
 
 gtfo.adjustStyles = function adjustStyles() {
   // This function makes property adjustments to elements that already
@@ -116,7 +116,7 @@ gtfo.adjustStyles = function adjustStyles() {
 
   var cams = document.getElementsByClassName("cameras")[0];
   cams.style.position = "fixed";
-}
+};
 
 gtfo.moveElements = function moveElements() {
   // This moves around pre-existing elements, right now
@@ -133,7 +133,7 @@ gtfo.moveElements = function moveElements() {
   document.body.insertBefore(cams, document.body.firstChild);
   chatClass.insertBefore(controls, chatId);
   chatClass.insertBefore(addVid, chatClass.firstChild);
-}
+};
 
 gtfo.resizeVideo = function resizeVideo() {
   // This resizes the video player to the size of 
@@ -141,7 +141,7 @@ gtfo.resizeVideo = function resizeVideo() {
   var video = gtfo.getVideo();
   video.width = window.innerWidth;
   video.height = window.innerHeight;
-}
+};
 
 gtfo.autoResize = function autoResize() {
   // This attaches an event listener which causes
@@ -150,14 +150,12 @@ gtfo.autoResize = function autoResize() {
   window.onresize = function(){
     gtfo.resizeVideo();
   };
-}
+};
 
-gtfo.removeExtraElements = function removeExtraElements() {
-  // This removes non-critical elements for layout purposes.
-  document.getElementById("headerbar").remove();
-  document.getElementById("banner").remove();
-  document.getElementById("chat_users").remove();
-}
+gtfo.hideExtraElements = function hideExtraElements() {
+  // This hides non-critical elements for layout purposes.
+  document.getElementById("chat_users").style.display = "none";
+};
 
 gtfo.updateTransparency = function updateTransparency(value){
   // This updates the opacity values of ui elements
@@ -167,7 +165,7 @@ gtfo.updateTransparency = function updateTransparency(value){
   chatClass.style.opacity = value;
   var cams = document.getElementsByClassName("cameras")[0];
   cams.style.opacity = value;
-}
+};
 
 gtfo.createTransparencySlider = function createTransparencySlider(){
   // This creates a slider that controls the transparency of
@@ -188,7 +186,7 @@ gtfo.createTransparencySlider = function createTransparencySlider(){
     var controls = gtfo.getControls();
     controls.appendChild(slider);
   }
-}
+};
 
 gtfo.attachVideoTypeChangeDetection = function attachVideoTypeChangeDetection() {
   // This runs a function every secondish that
@@ -205,14 +203,25 @@ gtfo.attachVideoTypeChangeDetection = function attachVideoTypeChangeDetection() 
     setTimeout(checkVideoChange, 1000);
   }
   checkVideoChange();
-}
+};
+
+gtfo.fixFixButton = function fixFixButton() {
+  var fixButton = document.getElementById("fixmedia");
+  fixButton.onclick = function() {
+    setTimeout(function(){
+      document.body.insertBefore(gtfo.getVideo(), document.body.firstChild);
+      gtfo.resizeVideo();
+    }, 1000);
+  };
+};
 
 
 // Run Section.
-gtfo.removeExtraElements();
+gtfo.hideExtraElements();
 gtfo.moveElements();
 gtfo.adjustStyles();
 gtfo.resizeVideo();
 gtfo.autoResize();
 gtfo.createTransparencySlider();
 gtfo.attachVideoTypeChangeDetection();
+gtfo.fixFixButton();
