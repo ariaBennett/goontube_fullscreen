@@ -195,12 +195,12 @@ gtfo.attachVideoTypeChangeDetection = function attachVideoTypeChangeDetection() 
   // detects if the media type of the video
   // player has changed, and if it has,
   // it inserts the new video player.
-  window.currentPlayer = gtfo.getVideo().id;
+  gtfo.currentPlayer = gtfo.getVideo().id;
   function checkVideoChange() {
-    if (gtfo.getVideo().id !== window.currentPlayer) {
+    if (gtfo.getVideo().id !== gtfo.currentPlayer) {
       document.body.insertBefore(gtfo.getVideo(), document.body.firstChild);
       gtfo.resizeVideo();
-      window.currentPlayer = gtfo.getVideo().id;
+      gtfo.currentPlayer = gtfo.getVideo().id;
     }
     setTimeout(checkVideoChange, 1000);
   }
