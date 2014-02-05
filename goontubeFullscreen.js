@@ -190,13 +190,12 @@ gtfo.createTransparencySlider = function createTransparencySlider(){
 
 gtfo.attachVideoTypeChangeDetection = function attachVideoTypeChangeDetection() {
   // This runs a function every secondish that
-  // detects if the media type of the video
-  // player has changed, and if it has,
-  // it inserts the new video player.
-  gtfo.currentPlayer = gtfo.getVideo().id;
+  // checks the ytwrapper element for children,
+  // if it finds any it resets the UI.
+
   function checkVideoChange() {
-    if (gtfo.getVideo().id !== gtfo.currentPlayer) {
-      document.body.insertBefore(gtfo.getVideo(), document.body.firstChild);
+    if (document.getElementById("ytwrapper").childElementCount > 0) {
+      gtfo.moveElements();
       gtfo.resizeVideo();
       gtfo.currentPlayer = gtfo.getVideo().id;
     }
@@ -209,10 +208,33 @@ gtfo.fixFixButton = function fixFixButton() {
   var fixButton = document.getElementById("fixmedia");
   fixButton.onclick = function() {
     setTimeout(function(){
-      document.body.insertBefore(gtfo.getVideo(), document.body.firstChild);
+      gtfo.moveElements();
       gtfo.resizeVideo();
     }, 1000);
   };
+};
+
+gtfo.restoreNormalLayout = function restoreNormalLayout() {
+  // this undos fullscreen mode and returns everything back to
+  // normal.
+
+  // Remove added events
+  window.onresize = "";
+  document.getElementById("fixmedia").onclick = "";
+
+  // Move elements back into place.
+  document.getElementById("ytwrapper").appendChild(gtfo.getVideo());
+  
+  // unhide hidden elements
+  document.getElementById("chat_users").style.display = "inline";
+
+  // remove added elements
+  gtfo.getSlider().remove();
+
+  // reset styles of elements to normal
+  gtfo.getVideo().width = gtfo.getVideo().parentElement.width;
+  gtfo.getVideo().height = gtfo.getVideo().parentElement.height;
+
 };
 
 
