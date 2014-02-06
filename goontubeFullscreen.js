@@ -252,6 +252,7 @@ gtfo.storeDefaultStyles = function storeDefaultStyles() {
 };
 
 gtfo.restoreStyles = function restoreStyles() {
+  console.log("cool?");
  document.body.style.cssText = gtfo.defaultStyles.body;
  gtfo.getChatClass().style.cssText = gtfo.defaultStyles.chatClass;
  gtfo.getChatId().style.cssText = gtfo.defaultStyles.chatId;
@@ -312,7 +313,9 @@ gtfo.restoreNormalLayout = function restoreNormalLayout() {
   document.getElementById("chat_users").style.display = "inline";
 
   // remove added elements
-  gtfo.getSlider().remove();
+  if (navigator.vendor === "Google Inc.") {
+    gtfo.getSlider().remove();
+  }
 
   // reset styles of elements to normal
   gtfo.restoreStyles();
