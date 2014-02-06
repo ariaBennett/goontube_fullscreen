@@ -237,7 +237,7 @@ gtfo.storeDefaultStyles = function storeDefaultStyles() {
   // can restore them later.
   gtfo.defaultStyles = {};
   function storeStyle(name, style) {
-    gtfo.defaultStyles[name] = JSON.parse(JSON.stringify(style));
+    gtfo.defaultStyles[name] = style.cssText;
   }
 
   storeStyle("body", document.body.style);
@@ -252,23 +252,15 @@ gtfo.storeDefaultStyles = function storeDefaultStyles() {
 };
 
 gtfo.restoreStyles = function restoreStyles() {
-  function restoreStyle(element, defaultStyle) {
-    var elementStyle = element.style;
-    var keys = Object.keys(defaultStyle);
-    gtfo.each(keys, function(key){
-      elementStyle[key] = defaultStyle[key];
-    });
-  }
-
-  restoreStyle(document.body, gtfo.defaultStyles["body"]);
-  restoreStyle(gtfo.getChatClass(), gtfo.defaultStyles["chatClass"]);
-  restoreStyle(gtfo.getChatId(), gtfo.defaultStyles["chatId"]);
-  restoreStyle(document.getElementById("chat_list"), gtfo.defaultStyles["chatList"]);
-  restoreStyle(gtfo.getVideo(), gtfo.defaultStyles["video"]);
-  restoreStyle(gtfo.getControls(), gtfo.defaultStyles["controls"]);
-  restoreStyle(document.getElementById("cin"), gtfo.defaultStyles["chatInput"]);
-  restoreStyle(document.getElementById("likehate"), gtfo.defaultStyles["controlsLikeHate"]);
-  restoreStyle(document.getElementsByClassName("cameras")[0], gtfo.defaultStyles["cams"]);
+ document.body.style.cssText = gtfo.defaultStyles.body;
+ gtfo.getChatClass().style.cssText = gtfo.defaultStyles.chatClass;
+ gtfo.getChatId().style.cssText = gtfo.defaultStyles.chatId;
+ document.getElementById("chat_list").style.cssText = gtfo.defaultStyles.chatList;
+ gtfo.getVideo().style.cssText = gtfo.defaultStyles.video;
+ gtfo.getControls().style.cssText = gtfo.defaultStyles.controls;
+ document.getElementById("cin").style.cssText = gtfo.defaultStyles.chatInput;
+ document.getElementById("likehate").style.cssText = gtfo.defaultStyles.controlsLikeHate;
+ document.getElementsByClassName("cameras")[0].style.cssText = gtfo.defaultStyles.cams;
 };
 
 gtfo.restoreNormalLayout = function restoreNormalLayout() {
