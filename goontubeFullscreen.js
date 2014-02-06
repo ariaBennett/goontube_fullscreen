@@ -87,6 +87,9 @@ gtfo.adjustStyles = function adjustStyles() {
   // This function makes property adjustments to elements that already
   // exist on goontu.be.
   window.scrollTo(0, 0);
+  window.onscroll = function(){
+    window.scrollTo(0, 0);
+  };
   document.body.setAttribute("style",
     "overflow : hidden;"
   );
@@ -252,7 +255,6 @@ gtfo.storeDefaultStyles = function storeDefaultStyles() {
 };
 
 gtfo.restoreStyles = function restoreStyles() {
-  console.log("cool?");
  document.body.style.cssText = gtfo.defaultStyles.body;
  gtfo.getChatClass().style.cssText = gtfo.defaultStyles.chatClass;
  gtfo.getChatId().style.cssText = gtfo.defaultStyles.chatId;
@@ -273,6 +275,7 @@ gtfo.restoreNormalLayout = function restoreNormalLayout() {
 
   // Remove added events
   window.onresize = "";
+  window.onscroll = "";
   document.getElementById("fixmedia").onclick = "";
   var fixButton = document.getElementById("fixmedia");
   fixButton.onClick = "";
