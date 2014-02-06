@@ -319,6 +319,10 @@ gtfo.restoreNormalLayout = function restoreNormalLayout() {
   gtfo.restoreStyles();
 };
 
+gtfo.clickFixButton = function clickFixButton() {
+  document.getElementById("fixmedia").click();
+};
+
 gtfo.run = function run() {
   gtfo.hideExtraElements();
   gtfo.moveElements();
@@ -337,10 +341,12 @@ gtfo.addFullscreenButton = function addFullscreenButton(){
   buttonFullscreenChild.textContent = "fullscreen";
   buttonFullscreen.onclick = function() {
     if (gtfo.enabled === false) {
+      gtfo.clickFixButton();
       gtfo.enabled = true;
       gtfo.run();
     }
     else {
+      gtfo.clickFixButton();
       gtfo.enabled = false;
       gtfo.restoreNormalLayout();
     }
