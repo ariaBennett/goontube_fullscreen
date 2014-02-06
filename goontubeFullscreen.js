@@ -346,9 +346,9 @@ gtfo.addFullscreenButton = function addFullscreenButton(){
       gtfo.run();
     }
     else {
-      gtfo.clickFixButton();
       gtfo.enabled = false;
       gtfo.restoreNormalLayout();
+      gtfo.clickFixButton();
     }
   };
   gtfo.getControls().appendChild(buttonFullscreen);
