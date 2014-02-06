@@ -294,10 +294,17 @@ gtfo.restoreNormalLayout = function restoreNormalLayout() {
   document.getElementById("ytwrapper").appendChild(gtfo.getVideo());
   // Controls
   document.getElementById("playlistcontrols").appendChild(gtfo.getControls());
+  var actions = document.getElementById("actions");
+  var add = document.getElementById("add");
+  actions.insertBefore(add, actions.children[1]);
   // Chat
   var stageOuter = document.getElementsByClassName("st-vanilla-stage-ct")[0];
   var stageInner= document.getElementsByClassName("stage")[0];
   stageOuter.insertBefore(gtfo.getChatClass(), stageInner.nextSibling);
+  // Cameras
+  var stageOuter = document.getElementsByClassName("st-vanilla-stage-ct")[0];
+  var cameras = document.getElementsByClassName("cameras")[0];
+  stageOuter.insertBefore(cameras, stageOuter.firstChild);
 
   // Restore the normal text to the controls.
   var controlText = gtfo.getControls("text");
