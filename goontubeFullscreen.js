@@ -154,6 +154,7 @@ gtfo.moveElements = function moveElements() {
   document.body.insertBefore(cams, document.body.firstChild);
   chatClass.insertBefore(controls, chatId);
   chatClass.insertBefore(addVid, chatClass.firstChild);
+  gtfo.scrollChatToBottom();
 };
 
 gtfo.resizeVideo = function resizeVideo() {
