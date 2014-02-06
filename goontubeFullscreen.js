@@ -172,6 +172,11 @@ gtfo.autoResize = function autoResize() {
     gtfo.resizeVideo();
   };
 };
+gtfo.scrollChatToBottom = function scrollChatToBottom() {
+  // Scroll the chat area to the bottom
+  var chatList = document.getElementById("chat_list");
+  chatList.scrollTop = chatList.scrollHeight;
+};
 
 gtfo.hideExtraElements = function hideExtraElements() {
   // This hides non-critical elements for layout purposes.
@@ -349,11 +354,13 @@ gtfo.addFullscreenButton = function addFullscreenButton(){
       gtfo.clickFixButton();
       gtfo.enabled = true;
       gtfo.run();
+      gtfo.scrollChatToBottom();
     }
     else {
       gtfo.enabled = false;
       gtfo.restoreNormalLayout();
       gtfo.clickFixButton();
+      gtfo.scrollChatToBottom();
     }
   };
   gtfo.getControls().appendChild(buttonFullscreen);
