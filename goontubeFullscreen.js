@@ -293,7 +293,7 @@ gtfo.storeDefaultStyles = function storeDefaultStyles() {
   // when people plop this code into the console they see undefined and that is
   // scary to them so since this is what returns that to them we are gonna instead
   // have this return a nice little success message.
-  return "Fullscreen mode sucessfully applied!  Click the new \"fullscreen\" button to turn it on. <3";
+  return "Fullscreen mode successfully applied!  Click the new \"fullscreen\" button to turn it on. <3";
 };
 
 gtfo.restoreStyles = function restoreStyles() {
