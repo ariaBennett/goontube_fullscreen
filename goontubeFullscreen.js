@@ -289,6 +289,11 @@ gtfo.storeDefaultStyles = function storeDefaultStyles() {
   storeStyle("controlsLikeHate", document.getElementById("likehate").style);
   storeStyle("cams", document.getElementsByClassName("cameras")[0].style);
   storeStyle("polls", document.getElementsByClassName("interactive")[0].style);
+
+  // when people plop this code into the console they see undefined and that is
+  // scary to them so since this is what returns that to them we are gonna instead
+  // have this return a nice little success message.
+  return "Fullscreen mode sucessfully applied!  Click the new \"fullscreen\" button to turn it on. <3";
 };
 
 gtfo.restoreStyles = function restoreStyles() {
