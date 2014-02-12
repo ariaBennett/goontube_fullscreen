@@ -83,6 +83,23 @@ gtfo.getSlider = function getSlider() {
   return slider;
 };
 
+gtfo.getPolls = function getPolls() {
+  // This returns the polls element which is
+  // wrapped by the interactive id and class.
+  return document.getElementsByClassName("interactive")[0];
+};
+
+gtfo.getPlaylist = function getPlaylist() {
+  // This returns the playlist class element
+  return document.getElementsByClassName("playlist")[0];
+};
+
+gtfo.getTubemap = function getTubemap() {
+  // This returns the container of the elements where the
+  // rules are displayed and forum buttons and such
+  return document.getElementById("tubemap").parentElement;
+};
+
 gtfo.adjustStyles = function adjustStyles() {
   // This function makes property adjustments to elements that already
   // exist on goontu.be.
@@ -137,6 +154,11 @@ gtfo.adjustStyles = function adjustStyles() {
 
   var cams = document.getElementsByClassName("cameras")[0];
   cams.style.position = "fixed";
+
+  var polls = gtfo.getPolls();
+  polls.style.position = "fixed";
+  polls.style.width = "13.5%";
+  polls.style.marginLeft = "72%";
 };
 
 gtfo.moveElements = function moveElements() {
@@ -149,12 +171,18 @@ gtfo.moveElements = function moveElements() {
   var controls = gtfo.getControls();
   var addVid = document.getElementById("add");
   var cams = document.getElementsByClassName("cameras")[0];
+  var polls = gtfo.getPolls();
+  var tubemap = gtfo.getTubemap();
   document.body.insertBefore(video, document.body.firstChild);
   document.body.insertBefore(chatClass, document.body.firstChild);
   document.body.insertBefore(cams, document.body.firstChild);
+  document.body.insertBefore(polls, document.body.firstChild);
   chatClass.insertBefore(controls, chatId);
   chatClass.insertBefore(addVid, chatClass.firstChild);
   gtfo.scrollChatToBottom();
+  // We move the tubemap element out of the way so it wont suddenly
+  // enable itself and get in the way.
+  document.body.appendChild(tubemap);
 };
 
 gtfo.resizeVideo = function resizeVideo() {
@@ -192,6 +220,8 @@ gtfo.updateTransparency = function updateTransparency(value){
   chatClass.style.opacity = value;
   var cams = document.getElementsByClassName("cameras")[0];
   cams.style.opacity = value;
+  var polls = gtfo.getPolls();
+  polls.style.opacity = value;
 };
 
 gtfo.createTransparencySlider = function createTransparencySlider(){
@@ -258,6 +288,7 @@ gtfo.storeDefaultStyles = function storeDefaultStyles() {
   storeStyle("chatInput", document.getElementById("cin").style);
   storeStyle("controlsLikeHate", document.getElementById("likehate").style);
   storeStyle("cams", document.getElementsByClassName("cameras")[0].style);
+  storeStyle("polls", document.getElementsByClassName("interactive")[0].style);
 };
 
 gtfo.restoreStyles = function restoreStyles() {
@@ -270,6 +301,7 @@ gtfo.restoreStyles = function restoreStyles() {
  document.getElementById("cin").style.cssText = gtfo.defaultStyles.chatInput;
  document.getElementById("likehate").style.cssText = gtfo.defaultStyles.controlsLikeHate;
  document.getElementsByClassName("cameras")[0].style.cssText = gtfo.defaultStyles.cams;
+ document.getElementsByClassName("interactive")[0].style.cssText = gtfo.defaultStyles.polls;
 };
 
 gtfo.restoreNormalLayout = function restoreNormalLayout() {
@@ -307,6 +339,13 @@ gtfo.restoreNormalLayout = function restoreNormalLayout() {
   var stageOuter = document.getElementsByClassName("st-vanilla-stage-ct")[0];
   var cameras = document.getElementsByClassName("cameras")[0];
   stageOuter.insertBefore(cameras, stageOuter.firstChild);
+  // Tubemap
+  var tubemap = gtfo.getTubemap();
+  gtfo.getPolls().appendChild(tubemap);
+  // Polls
+  var polls = gtfo.getPolls();
+  var pollsContainer = document.getElementsByClassName("st-vanilla-lower")[0];
+  pollsContainer.insertBefore(polls, gtfo.getPlaylist());
 
   // Restore the normal text to the controls.
   var controlText = gtfo.getControls("text");
