@@ -299,9 +299,11 @@ gtfo.storeDefaultStyles = function storeDefaultStyles() {
   // when people plop this code into the console they see undefined and that is
   // scary to them so since this is what returns that to them we are gonna instead
   // have this return a nice little success message.
-  return (      "Fullscreen mode successfully applied!"
-           + "\n Click the new \"fullscreen\" button to turn it on."
-           + "\n It's safe to close this now."
+  return (      "      Fullscreen mode successfully applied!"
+           + "\n   Click the new \"fullscreen\" button to turn it on."
+           + "\n       (Buttons can be found under the video.)"
+           + "\n Press F11 to experience full screen to the fullest." 
+           + "\n          It's safe to close this now."
            + "\n                             Never stop goonin',"
            + "\n                                            -Nine"
          );
