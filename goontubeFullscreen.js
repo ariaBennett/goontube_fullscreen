@@ -154,11 +154,17 @@ gtfo.adjustStyles = function adjustStyles() {
 
   var cams = document.getElementsByClassName("cameras")[0];
   cams.style.position = "fixed";
+  if (navigator.vendor !== "Google Inc.") {
+    cams.style.backgroundColor = "black"; // This is a hack that makes this visible in firefox
+  }
 
   var polls = gtfo.getPolls();
   polls.style.position = "fixed";
   polls.style.width = "13.5%";
   polls.style.marginLeft = "72%";
+  if (navigator.vendor !== "Google Inc.") {
+    polls.style.backgroundColor = "#e2e2e2"; // This is a hack that makes this visible in firefox
+  }
 };
 
 gtfo.moveElements = function moveElements() {
@@ -302,16 +308,16 @@ gtfo.storeDefaultStyles = function storeDefaultStyles() {
 };
 
 gtfo.restoreStyles = function restoreStyles() {
- document.body.style.cssText = gtfo.defaultStyles.body;
- gtfo.getChatClass().style.cssText = gtfo.defaultStyles.chatClass;
- gtfo.getChatId().style.cssText = gtfo.defaultStyles.chatId;
- document.getElementById("chat_list").style.cssText = gtfo.defaultStyles.chatList;
- gtfo.getVideo().style.cssText = gtfo.defaultStyles.video;
- gtfo.getControls().style.cssText = gtfo.defaultStyles.controls;
- document.getElementById("cin").style.cssText = gtfo.defaultStyles.chatInput;
- document.getElementById("likehate").style.cssText = gtfo.defaultStyles.controlsLikeHate;
- document.getElementsByClassName("cameras")[0].style.cssText = gtfo.defaultStyles.cams;
- document.getElementsByClassName("interactive")[0].style.cssText = gtfo.defaultStyles.polls;
+  document.body.style.cssText = gtfo.defaultStyles.body;
+  gtfo.getChatClass().style.cssText = gtfo.defaultStyles.chatClass;
+  gtfo.getChatId().style.cssText = gtfo.defaultStyles.chatId;
+  document.getElementById("chat_list").style.cssText = gtfo.defaultStyles.chatList;
+  gtfo.getVideo().style.cssText = gtfo.defaultStyles.video;
+  gtfo.getControls().style.cssText = gtfo.defaultStyles.controls;
+  document.getElementById("cin").style.cssText = gtfo.defaultStyles.chatInput;
+  document.getElementById("likehate").style.cssText = gtfo.defaultStyles.controlsLikeHate;
+  document.getElementsByClassName("cameras")[0].style.cssText = gtfo.defaultStyles.cams;
+  document.getElementsByClassName("interactive")[0].style.cssText = gtfo.defaultStyles.polls;
 };
 
 gtfo.restoreNormalLayout = function restoreNormalLayout() {
