@@ -31,8 +31,8 @@ gtfo.getVideo = function getVideo() {
   else if (document.getElementById("mydmplayer")) {
     video = document.getElementById("mydmplayer");
   }
-  else if (document.getElementById("myytplayer")) {
-    video = document.getElementById("myytplayer");
+  else if (document.getElementById("ytapiplayer")) {
+    video = document.getElementById("ytapiplayer");
   }
   return video;
 };
