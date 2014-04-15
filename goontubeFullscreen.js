@@ -129,6 +129,8 @@ gtfo.adjustStyles = function adjustStyles() {
 
   var chatInput = document.getElementById("cin");
   chatInput.style.width = "100%";
+  chatInput.style.margin = 0;
+  chatInput.style.top = "101%";
 
   var controls = gtfo.getControls();
   controls.style.position = "relative";
